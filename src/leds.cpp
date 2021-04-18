@@ -10,7 +10,7 @@ void LEDSetup() {
       // FastLED.addLeds<TM1809, DATA_PIN, RGB>(leds, NUM_LEDS);
       // FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
       // FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS);
-      FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+      FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
   	  //FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
       // FastLED.addLeds<APA104, DATA_PIN, RGB>(leds, NUM_LEDS);
       // FastLED.addLeds<UCS1903, DATA_PIN, RGB>(leds, NUM_LEDS);
@@ -80,7 +80,7 @@ void steady_rotation()  {
         color = CRGB::Blue;
         break;
       case 2:
-        color = CRGB::Green;
+        color = CRGB::Green;    
         break;
       case 3:
         color = CRGB::Black;
@@ -94,4 +94,13 @@ void steady_rotation()  {
   }
   FastLED.show();
 
+}
+
+void steady(uint32_t colorval)
+{
+    for(int i=0; i<NUM_LEDS;i++)    {
+        leds[i] = colorval;
+    }
+    //fill_rainbow(leds, 40, 100);
+    FastLED.show();
 }

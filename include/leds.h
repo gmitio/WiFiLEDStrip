@@ -13,3 +13,4 @@
 void LEDSetup(void);
 void led_chase(void);           // Pattern
 void steady_rotation(void);     // Pattern
+void steady(uint32_t colorval);

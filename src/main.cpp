@@ -4,8 +4,8 @@
 #include "ESPAsyncWebServer.h"
 #include "config.h"
 
-const char* ssid     = "SSIDName";
-const char* password = "WiFiKey";
+const char* ssid     = "";
+const char* password = "";
 
 //WiFiServer server(80);
 AsyncWebServer server(80);
@@ -150,7 +150,8 @@ void loop() {
 
   // }
   if(mode == 0) {
-    steady_rotation();
+    //steady_rotation();
+    steady(0x007CFC00);
   }
   if(mode == 1) {
     led_chase();
