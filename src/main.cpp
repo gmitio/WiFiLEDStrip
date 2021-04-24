@@ -4,13 +4,15 @@
 #include "ESPAsyncWebServer.h"
 #include "config.h"
 
-const char* ssid     = "";
-const char* password = "";
+const char* ssid     = "Garbage";
+const char* password = "BeckettEastSideStoon@127";
 
 //WiFiServer server(80);
 AsyncWebServer server(80);
 int value = 0;
 int mode = -1;
+int colorval = 0; // For setting steady LED strip color
+
 void setup() { 
     Serial.begin(9600);
     delay(10);
@@ -63,6 +65,7 @@ void setup() {
 
 
         mode = doc["LedMode"].as<int>();
+        colorval = doc["Color"].as<int>();
 
         printf("Mode captured via JSON is: %d\r\n", mode);
 
@@ -149,12 +152,15 @@ void loop() {
 
 
   // }
-  if(mode == 0) {
-    //steady_rotation();
-    steady(0x007CFC00);
+  if(mode == 0) { // Rotating colors mode
+    steady_rotation();
   }
-  if(mode == 1) {
+  if(mode == 1) { // Chase pattern mode
     led_chase();
+  }
+  if(mode == 2) { // Steady one-color mode
+    //steady(0x007CFC00);
+    steady(colorval);
   }
   //steady_rotation();
   //led_chase();
